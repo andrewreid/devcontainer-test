@@ -11,7 +11,8 @@
     "ghcr.io/devcontainers/features/nvidia-cuda:1": {
       "installCudnn": true,
     },
-    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {},
+    "ghcr.io/devcontainers-extra/features/vscode-server:1": {}
   },
   "customizations": {
     "vscode": {
