@@ -47,8 +47,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 # Install Oh My Zsh for user 'coder'
 RUN useradd -ms /bin/zsh coder && \
-    echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-
+    echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Install Prisma CLI
 RUN npm install -g prisma
 
