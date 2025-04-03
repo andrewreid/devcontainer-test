@@ -44,7 +44,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m /bin/bash coder && \
+RUN useradd -ms /bin/bash coder && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Install Prisma CLI
 RUN npm install -g prisma && \
