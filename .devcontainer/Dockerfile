@@ -13,7 +13,6 @@ ENV CUDA_VERSION=11.2 \
 RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     rm cuda-keyring_1.1-1_all.deb && \
-    echo "deb [signed-by=/usr/share/keyrings/nvidia-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64 /" > /etc/apt/sources.list.d/cuda.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
     cuda-libraries-11-2 && \
