@@ -1,3 +1,5 @@
+## Changed some stuff.
+
 FROM node:22-bookworm
 
 # Set environment variables for CUDA/cuDNN
