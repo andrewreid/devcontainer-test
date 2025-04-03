@@ -10,19 +10,18 @@ ENV CUDA_VERSION=11.2 \
     LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
 
 # Add NVIDIA package repositories
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gnupg \
-    ca-certificates \
-    curl && \
-    curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/3bf863cc.pub | gpg --dearmor -o /usr/share/keyrings/nvidia-archive-keyring.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/nvidia-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64 /" > /etc/apt/sources.list.d/cuda.list && \
+RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    rm cuda-keyring_1.1-1_all.deb && \
+    echo "deb [signed-by=/usr/share/keyrings/nvidia-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64 /" > /etc/apt/sources.list.d/cuda.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    cuda-toolkit-11-2 \
-    libcudnn8=8.1.0.*-1+cuda11.2 \
-    libcudnn8-dev=8.1.0.*-1+cuda11.2 && \
+    cuda-libraries-11-2 && \
+    curl -O https://developer.download.nvidia.com/compute/redist/cudnn/v8.1.0/Ubuntu20_04-x64/libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && \
+    dpkg -i libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && \
+    rm libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && \
+    rm -rf /var/lib/apt/lists/* && \
     ldconfig && \
-    rm -rf /var/lib/apt/lists/*
 
 # Install system dependencies and dev tools
 RUN apt-get update && apt-get install -y \
