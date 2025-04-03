@@ -49,7 +49,7 @@ RUN useradd -ms /bin/bash coder && \
 # Install Prisma CLI
 RUN npm install -g prisma && \
     npm cache clean --force && \
-    rm -rf /root/.npm /root/.cache /tmp/node-compile /tmp/npm-*
+    rm -rf /root/.npm /root/.cache /tmp/node-compile-cache /tmp/npm-*
 
 # VS Code Server setup placeholder (Coder will handle VS Code support)
 
@@ -58,8 +58,5 @@ WORKDIR /workspace
 
 # Switch to coder user
 USER coder
-
-# Expose required ports
-EXPOSE 3000 9229
 
 CMD ["bash"]
