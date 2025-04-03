@@ -48,7 +48,6 @@ RUN --mount=type=cache,target=/var/cache/apt \
 # Install Oh My Zsh for user 'coder'
 RUN useradd -ms /bin/zsh coder && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    su - coder -c "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" --unattended"
 
 # Install Prisma CLI
 RUN npm install -g prisma
