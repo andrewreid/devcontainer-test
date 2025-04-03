@@ -20,7 +20,7 @@ RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/debian10/x8
     dpkg -i libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && \
     rm libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && \
     rm -rf /var/lib/apt/lists/* && \
-    ldconfig && \
+    ldconfig
 
 # Install system dependencies and dev tools
 RUN apt-get update && apt-get install -y \
@@ -44,20 +44,13 @@ RUN useradd -ms /bin/zsh coder && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     su - coder -c "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" --unattended"
 
-# Set up kubectl, helm, minikube (latest versions)
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl \
-    && chmod +x kubectl && mv kubectl /usr/local/bin/ \
-    && curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash \
-    && curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-    && chmod +x minikube && mv minikube /usr/local/bin/
-
 # Install Prisma CLI
 RUN npm install -g prisma
 
 # VS Code Server setup placeholder (Coder will handle VS Code support)
 
 # Set working directory
-WORKDIR /workspace/ourmoney
+WORKDIR /workspace
 
 # Switch to coder user
 USER coder
