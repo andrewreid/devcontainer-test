@@ -40,16 +40,16 @@ RUN --mount=type=cache,target=/var/cache/apt \
     jq \
     nano \
     less \
-    libglvnd-dev \
     pkg-config \
-    zsh \
-    postgresql-client
+    postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Oh My Zsh for user 'coder'
-RUN useradd -ms /bin/zsh coder && \
+RUN useradd -m /bin/bash coder && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Install Prisma CLI
-RUN npm install -g prisma
+RUN npm install -g prisma && \
+    npm cache clean --force && \
+    rm -rf /root/.npm /root/.cache /tmp/node-compile /tmp/npm-*
 
 # VS Code Server setup placeholder (Coder will handle VS Code support)
 
@@ -62,4 +62,4 @@ USER coder
 # Expose required ports
 EXPOSE 3000 9229
 
-CMD ["zsh"]
+CMD ["bash"]
