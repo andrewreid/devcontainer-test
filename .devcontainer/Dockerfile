@@ -3,8 +3,6 @@
 FROM node:22-bookworm
 
 # Set environment variables for CUDA/cuDNN
-ENV CUDA_VERSION=11.2
-ENV CUDNN_VERSION=8.1.0.77
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
