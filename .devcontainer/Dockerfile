@@ -29,8 +29,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
 RUN curl -O https://developer.download.nvidia.com/compute/redist/cudnn/v8.1.0/Ubuntu20_04-x64/libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && dpkg -i libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && rm libcudnn8_8.1.0.77-1+cuda11.2_amd64.deb && rm -rf /var/lib/apt/lists/*
 
 # Install system dependencies and dev tools
-RUN --mount=type=cache,target=/var/cache/apt \
-    apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     curl \
     wget \
     git \
