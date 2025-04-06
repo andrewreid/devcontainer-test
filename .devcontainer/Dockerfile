@@ -35,7 +35,6 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     htop \
     jq \
-    nano \
     less \
     pkg-config \
     postgresql-client && \
